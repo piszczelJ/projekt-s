@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
   padding: 20px;
   background:
-    radial-gradient(circle at top, #312e81 0%, #050505 40%);
+    radial-gradient(circle at top, #073106 0%, #050505 40%);
 }
 
 .header {
@@ -42,9 +42,9 @@ body {
 
   background: linear-gradient(
     90deg,
-    #22d3ee,
-    #3b82f6,
-    #a855f7
+    #04e688,
+    #03a303,
+    #0af172
   );
 
   -webkit-background-clip: text;
@@ -120,7 +120,7 @@ body {
 .player:hover {
   transform: translateY(-2px);
 
-  border: 1px solid #22d3ee;
+  border: 1px solid #0ef36d;
 }
 
 .clicker {
@@ -144,15 +144,15 @@ body {
   background:
     linear-gradient(
       135deg,
-      #22d3ee,
-      #3b82f6,
-      #a855f7
+      #00ff0da9,
+      #78f558,
+      #0dffa2
     );
 
   color: white;
 
   box-shadow:
-    0 0 60px rgba(168,85,247,0.6);
+    0 0 60px rgba(176, 233, 138, 0.6);
 
   transition: 0.2s;
 }
@@ -173,8 +173,8 @@ body {
 
   background: linear-gradient(
     90deg,
-    #22d3ee,
-    #a855f7
+    #0f9902,
+    #97e900
   );
 
   -webkit-background-clip: text;

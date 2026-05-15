@@ -7,16 +7,16 @@ function App() {
           ONLINE
         </div>
 
-        <h1 className="logo">CLICKSTORM</h1>
+        <h1 className="logo">MEGA KREATYWNY MEGA ORYGINALNY KLIKACZ</h1>
 
         <div className="user">
-          MasterKiller
+          UZYTKOWNIK1
         </div>
       </header>
 
       <main className="dashboard">
         <section className="ranking">
-          <h2>Today Ranking</h2>
+          <h2>RANKING DZIENNY</h2>
 
           <div className="player">
             <span>#1 Kuba</span>
@@ -31,7 +31,7 @@ function App() {
 
         <section className="clicker">
           <button className="click-button">
-            ⚡
+          🦛
           </button>
 
           <h2 className="counter">
