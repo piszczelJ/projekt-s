@@ -1,4 +1,7 @@
+import { useState } from 'react'
+
 function App() {
+  const [clicks, setClicks] = useState(0)
   return (
     <div className="app">
       <header className="header">
@@ -30,12 +33,12 @@ function App() {
         </section>
 
         <section className="clicker">
-          <button className="click-button">
+          <button className="click-button" onClick={() => setClicks(clicks + 1)}>
           🦛
           </button>
 
           <h2 className="counter">
-            12 521
+          {clicks}
           </h2>
         </section>
 
