@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
-  const [clicks, setClicks] = useState(0)
+  const [clicks, setClicks] = useState(
+    Number(localStorage.getItem('clicks')) || 0
+  )
+  useEffect(() => {
+    localStorage.setItem('clicks', clicks)
+  }, [clicks])
   return (
     <div className="app">
       <header className="header">
