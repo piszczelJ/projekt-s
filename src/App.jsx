@@ -8,6 +8,7 @@ function App() {
   )
   const [syncTimer, setSyncTimer] = useState(30)
   const [synced, setSynced] = useState(true)
+  const [isOnline, setIsOnline] = useState(navigator.onLine)
 
   useEffect(() => {
     localStorage.setItem('clicks', clicks)
@@ -54,12 +55,42 @@ function App() {
     setSynced(true)
   }
 
+  useEffect(() => {
+
+    function goOnline() {
+      setIsOnline(true)
+    }
+  
+    function goOffline() {
+      setIsOnline(false)
+    }
+  
+    window.addEventListener('online', goOnline)
+  
+    window.addEventListener('offline', goOffline)
+  
+    return () => {
+      window.removeEventListener('online', goOnline)
+  
+      window.removeEventListener('offline', goOffline)
+    }
+  
+  }, [])
+
   return (
     <div className="app">
       <header className="header">
-        <div className="status">
-          <div className="dot"></div>
-          ONLINE
+        <div className="status"  style={{
+    color: isOnline ? '#00ff88' : '#ff3b3b'
+  }}>
+       
+      <div
+  className="dot"
+  style={{
+    backgroundColor: isOnline ? '#00ff88' : '#ff3b3b'
+  }}
+></div>
+          {isOnline ? 'ONLINE' : 'OFFLINE'}
         </div>
 
         <h1 className="logo">MEGA KREATYWNY MEGA ORYGINALNY KLIKACZ</h1>
@@ -91,7 +122,11 @@ function App() {
   setClicks(clicks + 1)
   setSynced(false)
 }}>
-          🦛
+          <div
+  className={clicks % 50 === 0 && clicks !== 0 ? 'flip' : ''}
+>
+  🦛
+</div>
           </button>
 
           <h2 className="counter">
