@@ -1,12 +1,59 @@
 import { useState, useEffect } from 'react'
 
+
 function App() {
+
   const [clicks, setClicks] = useState(
     Number(localStorage.getItem('clicks')) || 0
   )
+  const [syncTimer, setSyncTimer] = useState(30)
+  const [synced, setSynced] = useState(true)
+
   useEffect(() => {
     localStorage.setItem('clicks', clicks)
   }, [clicks])
+  
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+  
+      setSyncTimer(prev => {
+  
+        if (prev === 1) {
+
+          syncData()
+          
+          return 30
+        }
+  
+        return prev - 1
+      })
+  
+    }, 1000)
+  
+    return () => clearInterval(interval)
+  
+  }, [])
+
+  const todayRanking = [
+    { name: 'Kuba', score: 22 },
+    { name: 'Ola', score: 11 },
+    { name: 'Jan', score: 90 }
+  ]
+  
+  const globalRanking = [
+    { name: 'Ola', score: 25423 },
+    { name: 'Kuba', score: 20112 },
+    { name: 'Jan', score: 18392 }
+  ]
+
+  function syncData() {
+
+    console.log('syncing data...')
+  
+    setSynced(true)
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -26,19 +73,24 @@ function App() {
         <section className="ranking">
           <h2>RANKING DZIENNY</h2>
 
-          <div className="player">
-            <span>#1 Kuba</span>
-            <span>522</span>
-          </div>
+          {
+  todayRanking.map((player, index) => (
+    <div className="player" key={player.name}>
+      <span>
+        #{index + 1} {player.name}
+      </span>
 
-          <div className="player">
-            <span>#2 Ola</span>
-            <span>481</span>
-          </div>
+      <span>{player.score}</span>
+    </div>
+  ))
+}
         </section>
 
         <section className="clicker">
-          <button className="click-button" onClick={() => setClicks(clicks + 1)}>
+          <button className="click-button" onClick={() => {
+  setClicks(clicks + 1)
+  setSynced(false)
+}}>
           🦛
           </button>
 
@@ -48,23 +100,37 @@ function App() {
         </section>
 
         <section className="ranking">
-          <h2>Global Ranking</h2>
+          <h2>Ranking Ugulny</h2>
 
-          <div className="player">
-            <span>#1 Ola</span>
-            <span>25 423</span>
-          </div>
+          {
+  globalRanking.map((player, index) => (
+    <div className="player" key={player.name}>
+      <span>
+        #{index + 1} {player.name}
+      </span>
 
-          <div className="player">
-            <span>#2 Kuba</span>
-            <span>20 112</span>
-          </div>
+      <span>{player.score}</span>
+    </div>
+  ))
+}
         </section>
       </main>
 
       <footer className="footer">
-        Last sync: 12:33
+     
+   
+    <div> {synced ? "ZSYNCHRONIZOWANO " : "NIE ZSYNCHRONIZOWANO "}</div>
+    <div> SYNCHRONIZACJA ZA: {syncTimer}</div>
       </footer>
+
+      
+
+  
+
+
+
+
+
     </div>
   )
 }
